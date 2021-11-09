@@ -74,7 +74,7 @@ if(isset($_POST["eliminar"])){
     $rol = $_POST['rol'];
 
     $u = new usuario($nombre, $correo, $password, $rol);
-    BD::bajaUsuario($u)
+    BD::bajaUsuario($u);
 }
 
     $lista = BD::obtieneUsuarios();

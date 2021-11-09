@@ -24,13 +24,13 @@ class BD{
     }
 
     public static function obtieneUsuario($correo):usuario{
-        $res = self::$con->query("Select * from Tienda.users where Correo = $correo");
+        $res = self::$con->query("Select * from Tienda.users where Correo = '$correo'");
 
         while($registro = $res->fetch()){
             $u = new usuario($registro['Nombre'],$registro['Correo'],$registro['Password'],$registro['Rol']);
         }
 
-        return p;
+        return $u;
     }
 
     public static function altaUsuario(usuario $u){
@@ -53,7 +53,7 @@ class BD{
     public static function bajaUsuario(usuario $u){
         $correo = $u->getCorreo();
 
-        $res = self::$con->prepare("Delete from Tienda.users where Correo = $correo");
+        $res = self::$con->prepare("Delete from Tienda.users where Correo = '$correo'");
         $res->bindParam(':correo',$correo);
         $res->execute();
     }
