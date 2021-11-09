@@ -1,0 +1,28 @@
+ /* #cesta{
+   
+    margin-left: 20px;
+
+} */
+
+
+#contenedor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 20%;
+}
+
+#contenedor > div {
+  width: 25%;
+}
+
+#contenedor #cesta{
+    border: 0.5em solid red;   
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+#contenedor #cesta h3{
+   text-align: center;
+   border: solid red;   
+}
