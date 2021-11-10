@@ -23,8 +23,8 @@ class BD{
 
     }
 
-    public static function obtieneUsuario($correo):usuario{
-        $res = self::$con->query("Select * from Tienda.users where Correo = '$correo'");
+    public static function obtieneUsuario($nombre):usuario{
+        $res = self::$con->query("Select * from Tienda.users where Nombre = '$nombre'");
 
         while($registro = $res->fetch()){
             $u = new usuario($registro['Nombre'],$registro['Correo'],$registro['Password'],$registro['Rol']);

@@ -1,6 +1,6 @@
 <?php
-    require_once("Clases/Usuario.php");
-    require_once("BD/BD.php");
+    require_once("Clases/usuario.php");
+    require_once("Includes/BD.php");
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,6 @@ BD::conecta();
 
 if(isset($_POST["insertar"])){
 
-    
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
     $password = $_POST['password'];
@@ -58,7 +57,7 @@ if(isset($_POST["insertar"])){
         BD::bajaUsuario($u);
         $u = new usuario($nombre, $correo, $password, $rol);
         BD::altaUsuario($u);
-        
+
     } else {
         $u = new usuario($nombre, $correo, $password, $rol);
         BD::altaUsuario($u);
