@@ -12,14 +12,13 @@ if(isset($_POST["enviar"])){
     if(empty($usuario) || empty($password)){
         echo "Debes tener un usuario con contraseña";
     } else {
-        if(Sesion::existe('usuario')){
-            $u = Sesion::leer('usuario');
+        if(BD::existeUsuario($usuario)){
+            Sesion::iniciar();
+            Sesion::escribir('usuario', BD::obtieneUsuario($usuario));
+            header("Location: imgform.php");
         } else {
-            $u = BD::obtieneUsuario($usuario);
-            Sesion::escribir('usuario', $u);
-
+            echo "No existe usuario";
         }
-        header("Location: verDatos.php");
     }
 }
 

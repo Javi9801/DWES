@@ -1,5 +1,4 @@
 <?php
-
 require_once('./Clases/usuario.php');
 
 class BD{
@@ -33,6 +32,16 @@ class BD{
         return $u;
     }
 
+    public static function existeUsuario($nombre){
+        $res = self::$con->query("Select * from Tienda.users where Nombre = '$nombre'");
+
+        $cons = $res->fetch();
+        if($cons!=0){
+            return true;
+        }
+            return false;
+    }
+
     public static function altaUsuario(usuario $u){
 
         $res = self::$con->prepare("Insert into Tienda.users values(:nombre, :correo, :password, :rol)");
@@ -56,6 +65,16 @@ class BD{
         $res = self::$con->prepare("Delete from Tienda.users where Correo = '$correo'");
         $res->bindParam(':correo',$correo);
         $res->execute();
+    }
+
+    public static function insertaImagen(usuario $u, $i){
+
+            $correo = $u->getCorreo();
+
+            $res = self::$con->exec("INSERT INTO Tienda.images(id,imagen, hora) values ('$correo', '$i', now())");
+
+            return $res;
+
     }
 
 }

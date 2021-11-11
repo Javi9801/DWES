@@ -8,5 +8,6 @@ Sesion::iniciar();
 if(Sesion::existe('usuario')){
     $u = Sesion::leer('usuario');
     echo $u->getNombre().", ".$u->getCorreo().", ".$u->getRol()."<br>";
-    echo "<p><a href='logoff.php'></a></p>";
+
+    echo "<p><a href='logoff.php'>LOGOFF</a></p>";
 }
