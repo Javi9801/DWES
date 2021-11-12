@@ -1,5 +1,6 @@
 <?php
 require_once('./Clases/usuario.php');
+require_once('./Clases/imagen.php');
 
 class BD{
     private static $con;
@@ -73,8 +74,22 @@ class BD{
 
             $res = self::$con->exec("INSERT INTO Tienda.images(id,imagen, hora) values ('$correo', '$i', now())");
 
+
             return $res;
 
+    }
+
+    public static function cargaImagen($correo){
+
+        $ret = array();
+
+        $res = self::$con->query("SELECT * FROM tienda.images WHERE id = '$correo'");
+
+        while($registro = $res->fetch()){
+            $u = new imagen($registro['id'],$registro['imagen'],$registro['hora'],);
+        }
+
+        return $u;
     }
 
 }

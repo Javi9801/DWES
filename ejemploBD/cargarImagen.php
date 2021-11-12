@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     BD::conecta();
     Sesion::iniciar();
 
-    var_dump($_SESSION);
+
     if(Sesion::existe('usuario')){
         $u = Sesion::leer('usuario');
     }
@@ -20,13 +20,12 @@ if(isset($_POST['submit'])){
         $img_contenido = file_get_contents($image);
         $img_contenido = base64_encode($img_contenido);
 
-        var_dump($_FILES);
 
 
            $res =  BD::insertaImagen($u, $img_contenido);
-            if($res){
-                echo "OK";
-                header("location : verDatos.php");
+        //    var_dump($res);
+            if($res==1){
+                header("Location:verDatos.php");
             } else {
                 echo "ERROR";
             }
